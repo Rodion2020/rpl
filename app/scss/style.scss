@@ -1,0 +1,141 @@
+@import "vars";
+@import "libs";
+@import "fonts";
+@import "global";
+
+
+.loading {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 9999;
+	background-color: #000;
+	&__icon {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		font-size: 50px;
+		color: #fff;
+		animation: rotateLoadingIcon 1s ease 0s infinite normal none;
+	}
+}
+
+@keyframes rotateLoadingIcon {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.burger {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-direction: column;
+	width: 40px;
+	height: 40px;
+	padding: 8px 5px;
+	border: 1px solid #fff;
+	border-radius: 3px;
+	background-color: #fff;
+	transition: .3s;
+	
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 2;
+	
+	margin: 0 50px;
+	&::after,
+	&::before {
+		content: "";
+		display: block;
+		width: 100%;
+		height: 2px;
+		background-color: #000;
+		transition: .3s;
+	}
+	&__line {
+		width: 100%;
+		height: 2px;
+		background-color: #000;
+		transition: .3s;
+	}
+	&--active {
+		background-color: #fff;
+		&::after {
+			transform: translateY(-10px) rotate(135deg);
+			background-color: #000 !important;
+		}
+		&::before {
+			transform: translateY(10px) rotate(-135deg);
+			background-color: #000 !important;
+		}
+		& .burger__line {
+			opacity: 0;
+			transition: 0s;
+		}
+	}
+}
+
+
+.nav {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 1;
+	background-color: #000;
+	display: flex;
+	flex-direction: column;
+	transform: translateY(-100%);
+	padding: 80px 50px;
+	opacity: 0;
+	transition: transform .5s,
+	opacity .7s;
+	&__link {
+		color: #fff;
+		padding: 5px 0;
+		margin: 5px 0;
+	}
+	&--active {
+		transform: translateY(0%);
+		transition: transform .5s,
+		opacity .3s;
+		opacity: 1;
+	}
+
+}
+
+
+.block__for__scroll {
+	background-color: #000;
+	width: 100%;
+	height: 100vh;
+}
+
+#block__1 {
+	background-color: #9457EB;
+}
+#block__2 {
+	background-color: #EB4C42;
+}
+#block__3 {
+	background-color: #F07427;
+}
+#block__4 {
+	background-color: #F4CA16;
+}
+#block__5 {
+	background-color: #50C878;
+}
+
+
+
+@import "media";

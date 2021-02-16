@@ -1,0 +1,59 @@
+
+/* CHROME */
+a:active, a:focus { outline: none; }
+input, textarea {outline:none;}
+input:active, textarea:active {outline:none;}
+:focus {outline:none;}
+textarea {resize:none;}
+button:active, button:focus {outline: none;}
+button::-moz-focus-inner {border: 0;}
+/*==============*/
+
+html {
+	box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+p {
+	margin: 0;
+}
+
+button {
+	cursor: pointer;
+}
+
+ul,
+li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+h1, h2, h3,
+h4, h5, h6 {
+	margin: 0;
+	font-style: inherit;
+}
+
+body {
+	min-width: 320px;
+	font-family: sans-serif;
+	font-size: 15px;
+	line-height: 150%;
+}
+
+.container {
+	max-width: 1170px;
+	padding: 0 15px;
+	margin: 0 auto;
+}
