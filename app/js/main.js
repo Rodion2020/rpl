@@ -73,6 +73,7 @@ jQuery(document).ready(function($) {
 
 
 
+	/* Функции связанные с навигацией */
 	let LinksFun = {
 		hrefInit: function(linkBlock) {
 			return $(linkBlock).attr('href');
@@ -84,8 +85,7 @@ jQuery(document).ready(function($) {
 		},
 	}
 
-
-
+	/* Обработка клика на кнопу навиции с сылкой на блок */
 	$('.nav__link').on('click', function(event) {
 		event.preventDefault();
 
@@ -100,6 +100,42 @@ jQuery(document).ready(function($) {
 	});
 
 
+
+	/* Объект с методами для Форм для ввода */
+	let Form = {
+		
+		 // Проверяет длину формы ввода
+		checkLength: function(inputValue, minLength, maxLength) {
+			let string = jQuery.trim(inputValue);
+
+			let stringLength = string.length;
+
+			if (stringLength >= minLength && stringLength <= maxLength)
+				return true;
+			else
+				return false
+		},
+
+		// Функция, которая выводит текст по умолчанию при необходимости
+		blur: function(element, defaultText) {
+			if($(element).attr('value')=='') $(element).attr('value', defaultText);
+		},
+
+		// Функция, которая убирает текст по умолчанию при необходимости
+		focus: function(element, defaultText) {
+			if($(element).attr('value') == defaultText) $(element).attr('value', '');
+		}
+	}
+
+	// Обработка фокусировки на строке ввода
+	$('.form__input').on('focus', function(event) {
+		Form.focus(this, 'Default text...')
+	});
+	
+	// Обработка расфокусировки на строке ввода
+	$('.form__input').on('blur', function(event) {
+		Form.blur(this, 'Default text...')
+	});
 
 
 });
