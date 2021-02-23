@@ -138,4 +138,40 @@ jQuery(document).ready(function($) {
 	});
 
 
+
+	/* Объект для обработки ошибок */
+	let Debug = {
+
+		// Метод, который выводит сообщение в консоль
+		showBug: function(errorName = "*****", errorText = "*****", typeMsg = "###") {
+			
+			// Начальный заголовок и тест для сообщения
+			let msgTitle = '';
+			let msgText = '   ↪ ' + errorText;
+			
+			// Иконки для сообщений
+			let error = '❌';
+			let warning = '❓';
+			let success = '✅';
+
+			// Задаёт иконки для заголовка сообщения
+			if (typeMsg === 'error') {
+				msgTitle = error + ' ' + errorName;
+			} else if (typeMsg === "warning") {
+				msgTitle = warning + ' ' + errorName;
+			} else if (typeMsg === "success") {
+				msgTitle = success + ' ' + errorName;
+			} else {
+				msgTitle = typeMsg + ' ' + errorName;
+			}
+
+			// Выводит заголовок и текст сообщения
+			console.log(msgTitle);
+			console.log(msgText);
+		}
+	}
+
+	Debug.showBug("Ошибка", "Текст для тестовой ошибки", "error")
+	Debug.showBug("Успех", "Текст для тестового успешного действия", "success")
+
 });
