@@ -68,6 +68,8 @@ jQuery(document).ready(function($) {
 		}, delay )
 	}
 
+
+
 	/* Закрывает блок Загрузки */
 	LoadingBlock.hideBlock();
 
@@ -84,6 +86,8 @@ jQuery(document).ready(function($) {
 			}, speed); 
 		},
 	}
+
+
 
 	/* Обработка клика на кнопу навиции с сылкой на блок */
 	$('.nav__link').on('click', function(event) {
@@ -127,6 +131,8 @@ jQuery(document).ready(function($) {
 		}
 	}
 
+
+
 	// Обработка фокусировки на строке ввода
 	$('.form__input').on('focus', function(event) {
 		Form.focus(this, 'Default text...')
@@ -143,27 +149,21 @@ jQuery(document).ready(function($) {
 	let Debug = {
 
 		// Метод, который выводит сообщение в консоль
-		showBug: function(errorName = "*****", errorText = "*****", typeMsg = "###") {
+		reportAboutEvent: function(errorName = false, errorText = false, success = false) {
 			
 			// Начальный заголовок и тест для сообщения
 			let msgTitle = '';
 			let msgText = '   ↪ ' + errorText;
 			
 			// Иконки для сообщений
-			let error = '❌';
-			let warning = '❓';
-			let success = '✅';
+			let errorIcon = '❌';
+			let successIcon = '✅';
 
 			// Задаёт иконки для заголовка сообщения
-			if (typeMsg === 'error') {
-				msgTitle = error + ' ' + errorName;
-			} else if (typeMsg === "warning") {
-				msgTitle = warning + ' ' + errorName;
-			} else if (typeMsg === "success") {
-				msgTitle = success + ' ' + errorName;
-			} else {
-				msgTitle = typeMsg + ' ' + errorName;
-			}
+			if (success)
+				msgTitle = successIcon + ' ' + errorName;
+			else
+				msgTitle = errorIcon + ' ' + errorName;
 
 			// Выводит заголовок и текст сообщения
 			console.log(msgTitle);
@@ -171,7 +171,35 @@ jQuery(document).ready(function($) {
 		}
 	}
 
-	Debug.showBug("Ошибка", "Текст для тестовой ошибки", "error")
-	Debug.showBug("Успех", "Текст для тестового успешного действия", "success")
+
+
+	let FuntionsForLinks = {
+		showBlock: function(linkId, blockId, textForLink = 'Hide') {
+			var txt = textForLink;
+			
+			$(linkId).text(txt);
+			$(blockId).slideDown(400);
+		},
+		hideBlock: function(linkId, blockId, textForLink = 'Show') {
+			var txt = textForLink;
+			
+			$(linkId).text(txt);
+			$(blockId).slideUp(400);
+		},
+		toggleBlock: function(linkId, blockId, textWhenHided = 'Hide', textWhenShowed = 'Show') {
+			var txt = $(blockId).is(':visible') ? textWhenHided : textWhenShowed;
+			
+			$(linkId).text(txt);
+			$(blockId).slideToggle(400);
+		}
+	}
+
+	$('.content__more-link').on('click', function(event) {
+		event.preventDefault();
+
+		FuntionsForLinks.toggleBlock('.content__more-link', '.content__more-info', 'Show the Text', 'Hide the Text');
+	});
+
+
 
 });
