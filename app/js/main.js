@@ -17,12 +17,8 @@ jQuery(document).ready(function($) {
 
 
 
-	/* Инициализация объектов для HTML-блоков */
+	/* Инициализация блока загрузки страницы по классу без точки */
 	let Nav = new initHTMLObject('nav'); /* !!! Название класса без точки !!! */
-	let Burger = new initHTMLObject('burger'); /* !!! Название класса без точки !!! */
-	let LoadingBlock = new initHTMLObject('loading'); /* !!! Название класса без точки !!! */
-
-
 
 	/* Объект с методами для блока навигации */
 	let NavFun = {
@@ -53,6 +49,9 @@ jQuery(document).ready(function($) {
 
 
 
+	/* Инициализация блока загрузки страницы по классу без точки */
+	let Burger = new initHTMLObject('burger'); /* !!! Название класса без точки !!! */
+
 	/* Обработка нажатия на "бургер" */
 	$(Burger.className).on('click', function(event) {
 		event.preventDefault();
@@ -66,6 +65,9 @@ jQuery(document).ready(function($) {
 	});
 
 
+
+	/* Инициализация блока загрузки страницы по классу без точки */
+	let LoadingBlock = new initHTMLObject('loading'); /* !!! Название класса без точки !!! */
 
 	/* Объекту LoadingBlock добавляется метод, который закрывает этот блок с учётом скорости и задержки */
 	LoadingBlock.hideBlock = function(speed = 400, delay = 0) {
@@ -95,27 +97,27 @@ jQuery(document).ready(function($) {
 		},
 
 		// Выведение блока по нажатию по ссылке
-		showBlockByLink: function(linkId, blockId, textForLink = 'Hide') {
+		showBlockByLink: function(linkId, blockId, speed = 1000, textForLink = 'Hide') {
 			var txt = textForLink;
 			
 			$(linkId).text(txt);
-			$(blockId).slideDown(400);
+			$(blockId).slideDown(speed);
 		},
 		
 		// Скрытие блока по нажатию по ссылке
-		hideBlockByLink: function(linkId, blockId, textForLink = 'Show') {
+		hideBlockByLink: function(linkId, blockId, speed = 1000, textForLink = 'Show') {
 			var txt = textForLink;
 			
 			$(linkId).text(txt);
-			$(blockId).slideUp(400);
+			$(blockId).slideUp(speed);
 		},
 		
 		// Выведение и скрытие блока по нажатию по ссылке
-		toggleBlockByLink: function(linkId, blockId, textWhenHided = 'Hide', textWhenShowed = 'Show') {
-			var txt = $(blockId).is(':visible') ? textWhenHided : textWhenShowed;
+		toggleBlockByLink: function(linkId, blockId, speed = 1000, textWhenHidden = 'Show', textWhenShowed = 'Hide') {
+			var txt = $(blockId).is(':visible') ? textWhenHidden : textWhenShowed;
 			
 			$(linkId).text(txt);
-			$(blockId).slideToggle(400);
+			$(blockId).slideToggle(speed);
 		}
 	}
 
@@ -124,22 +126,21 @@ jQuery(document).ready(function($) {
 		event.preventDefault();
 
 		// Скрытие и показ блока по вызову метода
-		FuntionsForLinks.toggleBlockByLink('.content__more-link', '.content__more-info', 'Show the Text', 'Hide the Text');
+		FuntionsForLinks.toggleBlockByLink('.content__more-link', '.content__more-info', 1000, 'Show the Text', 'Hide the Text');
 	});
 
 
-
-	/* Обработка клика на кнопу навиции с сылкой на блок */
+	/* Обработка клика на блок с ссыклкой на блок */
 	$('.nav__link').on('click', function(event) {
 		event.preventDefault();
 
-		/* Инициализация ссылки к блоку элемента */
+		 // Инициализация ссылки к блоку элемента 
 		let href = FuntionsForLinks.hrefInit($(this));
 
-		/* Прокрутка до определенного блока с указаной скоростью */
+		 // Прокрутка до определенного блока с указаной скоростью 
 		FuntionsForLinks.scrollToBlock(href);
 
-		/* Зыкрывает блок Навигации */
+		 // Зыкрывает блок Навигации 
 		NavFun.hideNav();
 	});
 
