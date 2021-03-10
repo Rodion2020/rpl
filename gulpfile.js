@@ -26,6 +26,7 @@ function stylesCSS() {
 function scriptsJS() {
 	return src([
 		'node_modules/jquery/dist/jquery.min.js',
+		'app/js/oop.js',
 		'app/js/main.js'
 	])
 		.pipe(concat('main.min.js'))
